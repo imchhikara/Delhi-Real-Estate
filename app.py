@@ -11,10 +11,10 @@ df = pickle.load(pickle_in2)
 
 #Title
 page_icon = ":house:"
-page_title = "Predict House Price in Delhi"
-layout = "centered"
-st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
-st.title(page_title + " " + page_icon)
+page_title = "Predict House Price"
+layout1 = "centered"
+st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout1)
+st.title(page_title + " " + page_icon )
 
 #Hide Streamlit Style
 hide_st_style = """
