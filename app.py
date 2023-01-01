@@ -62,7 +62,7 @@ with st.form("entry_form", clear_on_submit=False):
        'Vasundhara'))
     "---"
     bhk = st.number_input('BHK', 1, 4, 2, step=1)
-    sqft = st.slider("Built-up Area (sq.ft)", 500, 4000, 1000, step=1)
+    sqft = st.slider("Carpet Area (sq.ft)", 500, 4000, 750, step=1)
     bath = st.number_input('Bathroom', 1, 5, 2,step=1)
     park = st.number_input('Parking', 1, 5, 2, step=1)
     "---"
@@ -72,3 +72,6 @@ with st.form("entry_form", clear_on_submit=False):
         result = int(result)
         result = "₹{:,.2f}".format(result)
         st.success(f"{bhk} BHK in {location} will cost : {result}")
+
+link='Created by [Deepak Chhikara](https://www.linkedin.com/in/imchhikara)'
+st.markdown(link,unsafe_allow_html=True)
