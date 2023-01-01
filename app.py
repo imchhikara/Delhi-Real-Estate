@@ -49,6 +49,7 @@ html_temp = """
         </div>
         """      
 st.markdown(html_temp, unsafe_allow_html = True)
+
     
 with st.form("entry_form", clear_on_submit=False):
     # the following lines create text boxes in which the user can enter 
@@ -70,8 +71,8 @@ with st.form("entry_form", clear_on_submit=False):
     if submitted:
         result = predict_price(location,sqft,bath,bhk,park)
         result = int(result)
-        result = "₹{:,.2f}".format(result)
-        st.success(f"{bhk} BHK in {location} will cost : {result}")
+        #result = "₹{:}".format(result)
+        st.success(f"{bhk} BHK in {location} will cost : ₹ {result}")
 
 link='Created by [Deepak Chhikara](https://www.linkedin.com/in/imchhikara)'
 st.markdown(link,unsafe_allow_html=True)
