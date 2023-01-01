@@ -1,7 +1,6 @@
 import pickle
 import streamlit as st
 import numpy as np
-import locale  
   
 # loading in the model to predict on the data
 pickle_in = open('model.pkl', 'rb')
@@ -9,6 +8,25 @@ model = pickle.load(pickle_in)
 
 pickle_in2 = open('df.pkl', 'rb')
 df = pickle.load(pickle_in2)
+
+#Title
+page_icon = ":house:"
+page_title = "Predict House Price in Delhi"
+layout = "centered"
+st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
+st.title(page_title + " " + page_icon)
+
+#Hide Streamlit Style
+hide_st_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer{visibility: hidden;}
+    header{visibility: hidden;}
+    </style>
+    """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+
 
 #Our prediction model
 def predict_price(location,sqft,bath,bhk,park):
@@ -44,13 +62,13 @@ with st.form("entry_form", clear_on_submit=False):
        'Vasundhara'))
     "---"
     bhk = st.number_input('BHK', 1, 4, 2, step=1)
-    sqft = st.slider("Area", 500, 4000, 1000, step=1)
+    sqft = st.slider("Built-up Area (sq.ft)", 500, 4000, 1000, step=1)
     bath = st.number_input('Bathroom', 1, 5, 2,step=1)
     park = st.number_input('Parking', 1, 5, 2, step=1)
     "---"
     submitted = st.form_submit_button("Predict")
     if submitted:
         result = predict_price(location,sqft,bath,bhk,park)
-        locale.setlocale(locale.LC_MONETARY, 'en_IN')
-        result = locale.currency(result, grouping=True)
+        result = int(result)
+        result = "₹{:,.2f}".format(result)
         st.success(f"{bhk} BHK in {location} will cost : {result}")
